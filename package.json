@@ -1,0 +1,26 @@
+{
+  "name": "book-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shifted7/book-app.git"
+  },
+  "author": "Andrew Casper / Brandon Gibbs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shifted7/book-app/issues"
+  },
+  "homepage": "https://github.com/shifted7/book-app#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "pg": "^7.18.2",
+    "superagent": "^5.2.2"
+  }
+}
