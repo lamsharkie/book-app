@@ -6,7 +6,6 @@ const app = express();
 require('dotenv').config();
 
 const superagent = require ('superagent');
-// app.use('superagent');
 
 const pg = require('pg');
 const client = new pg.Client(process.env.DATABASE_URL);
@@ -32,11 +31,50 @@ app.get('/test', (request, response) => {
 })
 
 app.get('/searches/new', (request, response)=> {
-    response.render('./pages/searches/new.ejs')
+    response.render('./pages/searches/new.ejs');
 })
 
+app.post('/searches', collectFormData);
+
+function collectFormData(request, response){
+    let formData = request.body.search;
+    let searchText = formData[0];
+    let authorOrTitle = formData[1];
+
+    let url = `https://www.googleapis.com/books/v1/volumes?&maxResults=10&q=`;
+
+    if(authorOrTitle === 'title'){
+        url += `+intitle:${searchText}`;
+    }else if(authorOrTitle === 'author'){
+        url += `+inauthor:${searchText}`;
+    }
+
+    
+    superagent.get(url)
+    .then(results => {
+        let bookInfoArray = results.body.items;
+            // console.log('book results', results);
+        let responseData = bookInfoArray.map(info => {
+                return new Book(info.volumeInfo)
+            })
+            console.log('resp data', responseData)
+            response.render('./pages/searches/show.ejs', {books: responseData});
+        })
+
+}
+   
 
 
+function Book(obj){
+    this.title = obj.title ? obj.title : 'No title for you.';
+    this.authors_names = obj.authors;
+    this.description = obj.description;
+    if(obj.imageLinks){
+        this.imageurl = obj.imageLinks.thumbnail ? obj.imageLinks.thumbnail : url('/public/images/default.png');
+    }
+    
+   
+}
 // Turn this thing ONNNN!
 app.listen(PORT, () => {
     console.log(`Yo Yo Yo. Mike check one two, one two. Listening on ${PORT}`);
