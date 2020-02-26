@@ -28,6 +28,17 @@ Estimate of time needed to complete: 5 hours
 
 Start time: 9:00am
 
-Finish time: _____
+Finish time: 11:00am next day
 
-Actual time needed to complete: _____
+Actual time needed to complete: 7
+
+
+Number and name of feature: Lab 12 - Components and Forms
+
+Estimate of time needed to complete: 2 hours
+
+Start time: Noon
+
+Finish time: ----
+
+Actual time needed to complete: ---
