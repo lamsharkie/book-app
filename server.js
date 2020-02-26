@@ -18,6 +18,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
+// app.get('/', handle)
 
 // Go home!
 app.get('/', (request, response) => {
@@ -57,7 +58,6 @@ function collectFormData(request, response){
         let responseData = bookInfoArray.map(info => {
                 return new Book(info.volumeInfo)
             })
-            console.log('resp data', responseData)
             response.render('./pages/searches/show.ejs', {books: responseData});
         })
 
