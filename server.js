@@ -55,6 +55,7 @@ function handleNewSearch(request, response){
 };
 
 function collectFormData(request, response){
+
   let formData = request.body.search;
   let searchText = formData[0];
   let authorOrTitle = formData[1];
