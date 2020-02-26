@@ -24,7 +24,7 @@ app.get('/test', handleTest);
 app.get('/searches/new', handleNewSearch);
 app.post('/searches', collectFormData);
 app.get('*', (request, response) => {
-    response.status(404).send('this page does not exist');
+    response.status(404).render('./pages/error', {errorMessage: 'Page not found'});
   })
 
 
@@ -59,11 +59,14 @@ function collectFormData(request, response){
     .then(results => {
         let bookInfoArray = results.body.items;
         let responseData = bookInfoArray.map(info => {
-                return new Book(info.volumeInfo)
+                return new Book(info.volumeInfo);
             })
-            response.render('./pages/searches/show.ejs', {books: responseData});
+            response.status(200).render('./pages/searches/show.ejs', {books: responseData});
         })
-
+    .catch((err) => {
+        console.error('Error when getting form data: ', err);
+        response.status(500).render('./pages/error', {errorMessage: 'Could not retrieve book results'});
+    })
 }
    
 
