@@ -1,0 +1,46 @@
+h1{
+  font-size: 28px;
+  margin: 30px;
+}
+
+h2{
+  font-size: 22px;
+  margin: 30px;
+}
+
+
+main{
+  width:100%;
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book{
+  width: 80%;
+  margin: auto;
+  background-color: #00BBFF;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0px 20px 0px;
+  border: 1px solid black;
+}
+
+.book div{
+ width: 70%;
+ display: flex;
+ flex-direction: column;
+  align-items: center;
+  margin: 20px 0px 20px 0px;
+}
+
+.book div img,p,h4,h5{
+  margin:10px;
+}
+
+
+@media(min-width:641px){
+
+}
