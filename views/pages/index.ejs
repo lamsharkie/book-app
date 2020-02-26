@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AC/BG Book APP</title>
+    <link rel="stylesheet" type="text/css" href="/reset.css" />
     <link rel="stylesheet" type="text/css" href="/base.css" />
+    <link rel="stylesheet" type="text/css" href="/layout.css" />
+    <link rel="stylesheet" type="text/css" href="/module.css" />
 </head>
 <body>
-    Welcome to Book App. We are currently under construction.
+    <h1>Welcome to Book App. We are currently under construction.</h1>
+    <h2>My Collection: <%=books.length%> books</h2>
+    <main>
+        <% books.forEach(book=>{ %>
+        <section class="book">
+          <div>
+            <img src="<%=book.imageurl%>">
+            <h4><%= book.title %></h4>
+            <h5><%= book.authors %></h5>
+            <p><%= book.description %></p>
+          </div>
+        </section>
+        <% }) %>
+      </main>
 </body>
 </html>
