@@ -48,7 +48,6 @@ function collectFormData(request, response){
     }else if(authorOrTitle === 'author'){
         url += `+inauthor:${searchText}`;
     }
-
     
     superagent.get(url)
     .then(results => {

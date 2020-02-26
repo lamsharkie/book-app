@@ -11,19 +11,9 @@
    <section>
 
         <%  books.forEach(book => {  %>
-            <img src="<%= books[0].imageurl %>"/>
-        <%  }) %>
-
-        <!-- <h4><%= books[0].title %></h4> -->        
-          <%  books.forEach(book => {  %>
-                <h4><%= book.title %></h4>
-          <%  }) %>
-
-          <%  books.forEach(book => {  %>
-            <h4><%= book.authors_names %></h4>
-          <%  }) %>
-          
-          <%  books.forEach(book => {  %>
+            <img src="<%= book.imageurl %>"/>   
+            <h4><%= book.title %></h4>
+            <h4><%= book.authors_names %></h4>          
             <h4><%= book.description %></h4>
           <%  }) %>
         
