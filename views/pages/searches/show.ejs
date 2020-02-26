@@ -7,14 +7,17 @@
     <link rel="stylesheet" type="text/css" href="/base.css" />
 </head>
 <body>
-
-   <section>
-        <img src="<%= books[0].imageurl %>"/>
-        <h4><%= books[0].title %></h4>
-        <h5><%= books[0].authors_names[0] %></h5>
-        <p><%= books[0].description %></p>
-
-   </section>
     
+   <section>
+        <% books.forEach(book=>{ %>
+            <div>
+                <img src="<%=book.imageurl%>">
+                <h4><%= book.title %></h4>
+                <h5><%= book.authors_names %></h5>
+                <p><%= book.description %></p>
+            </div>
+        <% }) %>
+   </section>
+
 </body>
 </html>
