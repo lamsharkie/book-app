@@ -23,6 +23,9 @@ app.get('/', handleHome);
 app.get('/test', handleTest);
 app.get('/searches/new', handleNewSearch);
 app.post('/searches', collectFormData);
+app.get('*', (request, response) => {
+    response.status(404).send('this page does not exist');
+  })
 
 
 // Go home!
