@@ -4,20 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Showing...</title>
-    <link rel="stylesheet" type="text/css" href="/reset.css" />
-    <link rel="stylesheet" type="text/css" href="/base.css" />
-    <link rel="stylesheet" type="text/css" href="/layout.css" />
-    <link rel="stylesheet" type="text/css" href="/module.css" />
+    <%- include('../css.ejs') %>
 </head>
 <body>
-  <nav>
-    <div>Best Books</div>
-    <ul>
-        <a href="./searches/new"><li>Search</li></a>
-        <a href="./pages/index"><li>Search</li></a>
-    </ul>
-</nav>
-
+  <%- include('../nav.ejs') %>
   <header>
     <h6>Search Results</h6>
   </header>
@@ -27,13 +17,21 @@
     <section class="book">
       <div class="bookContainer">
         <img src="<%=book.imageurl%>">
-        <h4 name="title"><%= book.title %></h4>
-        <h5 name="authors"><%= book.authors %></h5>
+        <h4><%= book.title %></h4>
+        <h5><%= book.authors %></h5>
         <p name="description"><%= book.description %></p>
         <p>ISBN: <span name="isbn"><%= book.isbn%></span></p>
         <!-- fake input form? -->
-        <form action="/books" method="post"></form>
+        <form action="/books" method="post">
+          <fieldset class="hidden">
+            <input name="title" value="<%= book.title %>">
+            <input name="authors" value="<%= book.authors %>">
+            <input name="description" value="<%= book.description %>">
+            <input name="imageurl" value="<%= book.imageurl %>">
+            <input name="isbn" value="<%= book.isbn %>">
+          </fieldset>
           <button type="submit">Add to Database</button>
+
         </form>
       </div>
     </section>
