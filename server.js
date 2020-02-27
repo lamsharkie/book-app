@@ -96,13 +96,13 @@ function Book(obj){
   this.imageurl = this.imageurl.slice(0,5)==='http:' ? 'https:'+this.imageurl.slice(5) : this.imageurl;
 }
 // Turn this thing ONNNN!
-client.connect()
-  .then(()=>{
+// client.connect()
+//   .then(()=>{
     app.listen(PORT, () => {
       console.log(`Yo Yo Yo. Mike check one two, one two. Listening on ${PORT}`);
     })
-  })
-  .catch((err) => {
-    console.error('Error when connecting to database', err);
-    response.status(500).render('./pages/error', {errorMessage: 'Could not connect to database'});
-  })
+//   })
+//   .catch((err) => {
+//     console.error('Error when connecting to database', err);
+//     response.status(500).render('./pages/error', {errorMessage: 'Could not connect to database'});
+//   })

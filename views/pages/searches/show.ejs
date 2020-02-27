@@ -10,10 +10,22 @@
     <link rel="stylesheet" type="text/css" href="/module.css" />
 </head>
 <body>
+  <nav>
+    <div>Best Books</div>
+    <ul>
+        <a href="./searches/new"><li>Search</li></a>
+        <a href="./pages/index"><li>Search</li></a>
+    </ul>
+</nav>
+
+  <header>
+    <h6>Search Results</h6>
+  </header>
+
   <main>
     <% books.forEach(book=>{ %>
     <section class="book">
-      <div>
+      <div class="bookContainer">
         <img src="<%=book.imageurl%>">
         <h4><%= book.title %></h4>
         <h5><%= book.authors %></h5>
