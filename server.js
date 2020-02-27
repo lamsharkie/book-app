@@ -56,6 +56,7 @@ function handleNewSearch(request, response){
 };
 
 function collectFormData(request, response){
+
   let formData = request.body.search;
   let searchText = formData[0];
   let authorOrTitle = formData[1];
@@ -117,8 +118,8 @@ function Book(obj){
 
 
 // Turn this thing ONNNN!
-client.connect()
-  .then(()=>{
+ client.connect()
+   .then(()=>{
     app.listen(PORT, () => {
       console.log(`Yo Yo Yo. Mike check one two, one two. Listening on ${PORT}`);
     });
@@ -127,3 +128,4 @@ client.connect()
     console.error('Error when connecting to database', err);
     response.status(500).render('./pages/error', {errorMessage: 'Could not connect to database'});
   })
+
