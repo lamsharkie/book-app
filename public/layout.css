@@ -31,36 +31,6 @@ a, a:link, a:visited {
   display: none;
 }
 
-nav {
-  width: 100%;
-  height: 35px;
-  background-color: #0083B3;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 14px;
-}
-
-nav ul {
-  display: flex;
-  align-self: end;  
-  margin: 7px 21px;
-  /* justify-content: space-around; */
-}
-
-nav ul li{
-  margin-right: 14px;
-}
-
-header{
-  width: 100%;
-  height: auto;
-  background-color: rgb(23, 37, 37);
-  color: white;
-  display: flex;
-  justify-content: center;
-  padding: 7px;
-}
 
 main {
   width: 100%;
@@ -81,32 +51,10 @@ section {
   box-shadow: 3px 3px rgb(22, 29, 29, 0.6);
 }
 
-.bookContainer {
-  width: 80%;
-  align-self: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-} 
-
-.bookContainer img, h4, h5, p {
-  align-self: center;
-  margin: 14px;
-}
 
 img {
   border: .5px solid darkslategray;
   box-shadow: 2px 1px rgb(114, 113, 113);
-}
-
-.bookContainer button{
-  width: 25%;
-  min-width: 115px;
-  align-self: center;
-}
-
-.bookContainer form{
-  align-self: center;
 }
 
 
