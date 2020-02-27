@@ -2,14 +2,13 @@
 
 const express = require ('express');
 const app = express();
-
 require('dotenv').config();
-
 const superagent = require ('superagent');
-
+const methodOverride = require('method-override');
 const pg = require('pg');
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', err=>console.error(err));
+require('ejs');
 
 const PORT = process.env.PORT || 3001;
 
@@ -24,15 +23,17 @@ app.get('/', handleHome);
 app.get('/test', handleTest);
 app.get('/searches/new', handleNewSearch);
 app.post('/searches', collectFormData);
+app.post('/books', addBookToCollection);
+app.get('/books/:book_id', showBookDetails);
+app.put('/update/:book_id', updateBook);
 app.get('*', (request, response) => {
   response.status(404).render('./pages/error', {errorMessage: 'Page not found'});
-})
+});
 
 
 // Go home!
 function handleHome(request, response){
   let sql = 'SELECT * FROM books;';
-  
   client.query(sql)
     .then(results=>{
       let resultsData = results.rows;
@@ -59,18 +60,16 @@ function collectFormData(request, response){
   let formData = request.body.search;
   let searchText = formData[0];
   let authorOrTitle = formData[1];
-
   let url = `https://www.googleapis.com/books/v1/volumes?&maxResults=10&q=`;
   if(authorOrTitle === 'title'){
       url += `+intitle:${searchText}`;
   }else if(authorOrTitle === 'author'){
       url += `+inauthor:${searchText}`;
   }
-
   superagent.get(url)
   .then(results => {
     let bookInfoArray = results.body.items;
-    console.log(bookInfoArray);
+    console.log(bookInfoArray[0].volumeInfo.industryIdentifiers[0].identifier);
     let responseData = bookInfoArray.map(info => {
         return new Book(info.volumeInfo);
       })
@@ -81,12 +80,32 @@ function collectFormData(request, response){
     response.status(500).render('./pages/error', {errorMessage: 'Could not retrieve book results'});
   })
 }
-   
 
+function showBookDetails(request, response){
+  let id = request.params.book_id;
+  let sql = 'SELECT * FROM books WHERE id=$1;';
+  let safeValues = [id];
+  client.query(sql, safeValues)
+    .then(results => {
+      response.render('./pages/details.ejs', {book: results.rows[0]});
+    })
+    .catch((err) => {
+      console.error('Error showing book details: ', err);
+      response.status(500).render('./pages/error', {errorMessage: 'Could not show book results'});
+    });
+};
+
+function addBookToCollection(request, response){
+  console.log(request.body);
+}
+
+function updateBook(request, response){
+
+}
 
 function Book(obj){
   this.title = obj.title ? obj.title : 'No title for you.';
-  this.authors = obj.authors.join(', ');
+  this.authors = obj.authors ? obj.authors.join(', '): 'Author not found';
   this.description = obj.description;
   if(obj.imageLinks && obj.imageLinks.thumbnail){ // short-circuit evaluation
       this.imageurl = obj.imageLinks.thumbnail;
@@ -94,15 +113,19 @@ function Book(obj){
       this.imageurl = '/images/default.jpg';
   }
   this.imageurl = this.imageurl.slice(0,5)==='http:' ? 'https:'+this.imageurl.slice(5) : this.imageurl;
+  this.isbn = obj.industryIdentifiers[0] ? obj.industryIdentifiers[0].identifier : '';
 }
+
+
 // Turn this thing ONNNN!
-// client.connect()
-//   .then(()=>{
+ client.connect()
+   .then(()=>{
     app.listen(PORT, () => {
       console.log(`Yo Yo Yo. Mike check one two, one two. Listening on ${PORT}`);
-    })
-//   })
-//   .catch((err) => {
-//     console.error('Error when connecting to database', err);
-//     response.status(500).render('./pages/error', {errorMessage: 'Could not connect to database'});
-//   })
+    });
+  })
+  .catch((err) => {
+    console.error('Error when connecting to database', err);
+    response.status(500).render('./pages/error', {errorMessage: 'Could not connect to database'});
+  })
+

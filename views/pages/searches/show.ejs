@@ -27,9 +27,14 @@
     <section class="book">
       <div class="bookContainer">
         <img src="<%=book.imageurl%>">
-        <h4><%= book.title %></h4>
-        <h5><%= book.authors %></h5>
-        <p><%= book.description %></p>
+        <h4 name="title"><%= book.title %></h4>
+        <h5 name="authors"><%= book.authors %></h5>
+        <p name="description"><%= book.description %></p>
+        <p>ISBN: <span name="isbn"><%= book.isbn%></span></p>
+        <!-- fake input form? -->
+        <form action="/books" method="post"></form>
+          <button type="submit">Add to Database</button>
+        </form>
       </div>
     </section>
     <% }) %>

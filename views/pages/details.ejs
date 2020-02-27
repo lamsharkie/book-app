@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC/BG Book APP</title>
+    <link rel="stylesheet" type="text/css" href="/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/base.css" />
+    <link rel="stylesheet" type="text/css" href="/layout.css" />
+    <link rel="stylesheet" type="text/css" href="/module.css" />
+</head>
+<body>
+  <h1>Welcome to Book App. We are currently under construction.</h1>
+  <h2>Details:</h2>
+  <main>
+    
+    <section class="book">
+      <div>
+        <h4><%= book.title %></h4>
+        <img src="<%=book.imageurl%>">
+        <h5><%= book.authors %></h5>
+        <p><%= book.description %></p>
+        <p>ID #: <%= book.id %></p>
+        <p>ISBN: <%= book.isbn%></p>
+        <p>Bookshelf: <%= book.bookshelf %></p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
