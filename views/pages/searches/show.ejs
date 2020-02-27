@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Showing...</title>
-    <%- include('../css.ejs') %>
+    <%- include('../layout/css.ejs') %>
 </head>
 <body>
-  <%- include('../nav.ejs') %>
+  <%- include('../layout/nav.ejs') %>
   <header>
     <h6>Search Results</h6>
   </header>
 
-  <main>
+  <main id="showResultsMain">
     <% books.forEach(book=>{ %>
     <section class="book">
       <div class="bookContainer">

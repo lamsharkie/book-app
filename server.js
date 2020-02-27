@@ -52,6 +52,7 @@ function handleTest(request, response){
 };
 
 function handleNewSearch(request, response){
+  
   response.render('./pages/searches/new.ejs');
 };
 
@@ -86,7 +87,7 @@ function showBookDetails(request, response){
   let safeValues = [id];
   client.query(sql, safeValues)
     .then(results => {
-      response.render('./pages/details.ejs', {book: results.rows[0]});
+      response.render('./pages/details.ejs', {books: results.rows});
     })
     .catch((err) => {
       console.error('Error showing book details: ', err);
@@ -100,6 +101,7 @@ function addBookToCollection(request, response){
   let safeValues = [title, authors, isbn, imageurl, description];
   client.query(sql, safeValues)
     .then(results=>{
+      console.log('test');
       let id = results.rows[0].id;
       response.redirect(`./books/${id}`);
     })
