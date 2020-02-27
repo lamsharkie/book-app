@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERROR</title>
-    <link rel="stylesheet" type="text/css" href="/reset.css" />
-    <link rel="stylesheet" type="text/css" href="/base.css" />
-    <link rel="stylesheet" type="text/css" href="/layout.css" />
-    <link rel="stylesheet" type="text/css" href="/module.css" />
+    <%- include('./css.ejs') %>
 </head>
 <body>
+    <%- include('./nav.ejs') %>
     <%= errorMessage %>
 </body>
 </html>

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Search</title>
-    <link rel="stylesheet" type="text/css" href="/base.css" />
+    <%- include('../css.ejs') %>
 </head>
 <body>
+    <%- include('../nav.ejs') %>
     <h3>What book would you like to find?</h3>
     <form action="/searches" method="post">
         <input type="text" name="search" placeholder="Search for a title or author" required>

@@ -69,7 +69,6 @@ function collectFormData(request, response){
   superagent.get(url)
   .then(results => {
     let bookInfoArray = results.body.items;
-    console.log(bookInfoArray[0].volumeInfo.industryIdentifiers[0].identifier);
     let responseData = bookInfoArray.map(info => {
         return new Book(info.volumeInfo);
       })
@@ -96,7 +95,14 @@ function showBookDetails(request, response){
 };
 
 function addBookToCollection(request, response){
-  console.log(request.body);
+  let {title, authors, isbn, imageurl, description} = request.body;
+  let sql = 'INSERT INTO books(title, authors, isbn, imageurl, description) VALUES($1, $2, $3, $4, $5) RETURNING id';
+  let safeValues = [title, authors, isbn, imageurl, description];
+  client.query(sql, safeValues)
+    .then(results=>{
+      let id = results.rows[0].id;
+      response.redirect(`./books/${id}`);
+    })
 }
 
 function updateBook(request, response){
