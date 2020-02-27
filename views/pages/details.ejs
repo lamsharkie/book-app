@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showing...</title>
+    <title>AC/BG Book APP</title>
     <link rel="stylesheet" type="text/css" href="/reset.css" />
     <link rel="stylesheet" type="text/css" href="/base.css" />
     <link rel="stylesheet" type="text/css" href="/layout.css" />
     <link rel="stylesheet" type="text/css" href="/module.css" />
 </head>
 <body>
+  <h1>Welcome to Book App. We are currently under construction.</h1>
+  <h2>Details:</h2>
   <main>
-    <% books.forEach(book=>{ %>
+    
     <section class="book">
       <div>
+        <h4><%= book.title %></h4>
         <img src="<%=book.imageurl%>">
-        <h4 name="title"><%= book.title %></h4>
-        <h5 name="authors"><%= book.authors %></h5>
-        <p name="description"><%= book.description %></p>
-        <p>ISBN: <span name="isbn"><%= book.isbn%></span></p>
-        <!-- fake input form? -->
-        <form action="/books" method="post"></form>
-          <button type="submit">Add to Database</button>
-        </form>
+        <h5><%= book.authors %></h5>
+        <p><%= book.description %></p>
+        <p>ID #: <%= book.id %></p>
+        <p>ISBN: <%= book.isbn%></p>
+        <p>Bookshelf: <%= book.bookshelf %></p>
       </div>
     </section>
-    <% }) %>
   </main>
 </body>
 </html>
