@@ -6,6 +6,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 14px;
+  margin-bottom: 42px;
 }
 
 nav ul {
@@ -60,6 +61,41 @@ header{
   display: none;
 }
 
+
 #detailsMain .addDBButton{
   display: none;
+
+.searchMain {
+  display: flex;
+  align-content: center;
+}
+.searchForBooks {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.searchForBooks>input {
+  height: 35px;
+  width: 80%;
+  border-radius: 7px;
+  padding: 7px;
+  align-self: center;
+}
+
+.searchForBooks fieldset {
+  align-self: center;
+}
+
+.searchButton {
+  border-radius: 7px;
+  height: 35px;
+  min-width: 140px;
+  width: 50%;
+  align-self: center;
+}
+
+.homeHeader {
+  align-self: center;
 }
