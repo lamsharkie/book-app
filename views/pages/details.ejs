@@ -12,6 +12,9 @@
   <h2>Details:</h2>
   <main>
     <%- include('./layout/bookBasic.ejs') %>
+    <form action="<%=`/update/${books[0].id}%>?_method=PUT`" method="post">
+      <button class="updateButton" type="submit">Update</button>
+    </form>
   </main>
 </body>
 </html>

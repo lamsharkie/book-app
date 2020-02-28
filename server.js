@@ -108,7 +108,16 @@ function addBookToCollection(request, response){
 }
 
 function updateBook(request, response){
-
+ console.log('test');
+ let id = request.params.book_id;
+ let {title, authors, isbn, imageurl, description, bookshelf} = request.body;
+ let sql = 'UPDATE books SET title=$1, authors=$2, isbn=$3, imageurl=$4, description=$5, bookshelf=$6 RETURNING id;';
+ let safeValues = [title, authors, isbn, imageurl, description, bookshelf];
+ client.query(sql, safeValues)
+  .then(results => {
+    console.log(results);
+    response.redirect('/');
+  })
 }
 
 function Book(obj){
