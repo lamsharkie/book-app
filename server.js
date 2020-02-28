@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
+app.use(methodOverride('_method'));
 
 // Routes
 app.get('/', handleHome);
@@ -47,7 +48,7 @@ function handleHome(request, response){
 
 // Just in case things go wrong.
 function handleTest(request, response){
-  response.render('./pages/index.ejs');
+  response.send('Test page please ignore.');
   console.log('This is the test route calling. Something is not right. Pick up your phone!');
 };
 
@@ -101,21 +102,18 @@ function addBookToCollection(request, response){
   let safeValues = [title, authors, isbn, imageurl, description];
   client.query(sql, safeValues)
     .then(results=>{
-      console.log('test');
       let id = results.rows[0].id;
       response.redirect(`./books/${id}`);
     })
 }
 
 function updateBook(request, response){
- console.log('test');
  let id = request.params.book_id;
  let {title, authors, isbn, imageurl, description, bookshelf} = request.body;
- let sql = 'UPDATE books SET title=$1, authors=$2, isbn=$3, imageurl=$4, description=$5, bookshelf=$6 RETURNING id;';
- let safeValues = [title, authors, isbn, imageurl, description, bookshelf];
+ let sql = 'UPDATE books SET title=$1, authors=$2, isbn=$3, imageurl=$4, description=$5, bookshelf=$6 WHERE id=$7 RETURNING id;';
+ let safeValues = [title, authors, isbn, imageurl, description, bookshelf, id];
  client.query(sql, safeValues)
   .then(results => {
-    console.log(results);
     response.redirect('/');
   })
 }
@@ -131,6 +129,7 @@ function Book(obj){
   }
   this.imageurl = this.imageurl.slice(0,5)==='http:' ? 'https:'+this.imageurl.slice(5) : this.imageurl;
   this.isbn = obj.industryIdentifiers[0] ? obj.industryIdentifiers[0].identifier : '';
+  this.bookshelf = '';
 }
 
 

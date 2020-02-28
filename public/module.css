@@ -52,10 +52,14 @@ header{
   align-self: center;
 }
 
-#indexMain .id, .bookshelf, .addDBButton{
+#indexMain .addDBButton{
   display: none;
 }
 
 #showResultsMain > .id, .bookshelf{
+  display: none;
+}
+
+#detailsMain .addDBButton{
   display: none;
 }

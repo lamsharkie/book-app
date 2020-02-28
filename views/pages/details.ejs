@@ -10,9 +10,17 @@
   <%- include('./layout/nav.ejs') %>
   <h1>Welcome to Book App. We are currently under construction.</h1>
   <h2>Details:</h2>
-  <main>
+  <main id="detailsMain">
     <%- include('./layout/bookBasic.ejs') %>
-    <form action="<%=`/update/${books[0].id}%>?_method=PUT`" method="post">
+    <form action="/update/<%= books[0].id %>?_method=PUT" method="post">
+      <fieldset>
+        <input name="title" type="text" value="<%= books[0].title %>">
+        <input name="authors" type="text" value="<%- books[0].authors %>">
+        <input name="description" type="text" value="<%- books[0].description %>">
+        <input name="imageurl" type="text" value="<%- books[0].imageurl %>">
+        <input name="isbn" type="text" value="<%- books[0].isbn %>">
+        <input name="bookshelf" type="text" value="<%= books[0].bookshelf %>">
+      </fieldset>
       <button class="updateButton" type="submit">Update</button>
     </form>
   </main>
